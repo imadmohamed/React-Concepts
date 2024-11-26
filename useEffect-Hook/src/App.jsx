@@ -5,7 +5,7 @@ const App = () => {
   const [num1, setNum1] = useState(100)
 
   useEffect(()=>{
-    setNum1(200)
+    setNum1(2003)
   },[])
   
   
