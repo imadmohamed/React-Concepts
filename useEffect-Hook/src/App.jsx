@@ -5,8 +5,8 @@ const App = () => {
   const [num1, setNum1] = useState(100)
 
   useEffect(()=>{
-    
-  },[100])
+    setNum1(200)
+  },[])
   
   
   return (
