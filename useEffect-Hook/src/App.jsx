@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div>
       <h1>{num1}</h1>
-      <h2>dsdds</h2>
+      
     </div>
   )
 }
