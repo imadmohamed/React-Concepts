@@ -7,7 +7,7 @@ const App = () => {
     name:"imad",
     age:23,
     email:"abmohamedimad@gmail.com",
-    phone:772494279
+    phone:77
   }
 
   return (
