@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import Container from './Container'
+
+export const ThemeContext = createContext();
 
 const App = () => {
 
@@ -10,11 +12,14 @@ const App = () => {
   }
 
   return (
-    <div>
+    <ThemeContext.Provider 
+    value={{
+      theme:theme, //theme
+      }}>
       <button onClick={toggleTheme}>toggleTheme</button>
       <h1>App component</h1>
-      <Container theme = {theme}/>
-    </div>
+      <Container/>
+    </ThemeContext.Provider>
   )
 }
 

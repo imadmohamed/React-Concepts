@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from './App';
 
-const User = ({theme}) => {
+const User = () => {
+const {theme} = useContext(ThemeContext);
+
+//console.log("context", contexValue)
 
     const textStyle = {
         backgroundColor: theme === "light" ? "white" : "black",

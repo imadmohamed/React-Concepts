@@ -1,11 +1,11 @@
 import React from 'react'
 import User from './User'
 
-const Users = ({theme}) => {
+const Users = () => {
   return (
     <div>
         <h1>Users</h1>
-        <User theme={theme} />
+        <User  />
     </div>
   )
 }
