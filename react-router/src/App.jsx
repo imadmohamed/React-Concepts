@@ -6,6 +6,7 @@ import Contact from './Page/Contact'
 import { User } from './Page/User'
 import NaveBar from './components/NaveBar'
 import { UsersName } from './Page/UsersName'
+import Error from './Page/Error'
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
       <Route path='contact' element = {<Contact />}/> 
       <Route path='user' element = {<User />}/> 
       <Route path='username/:username' element = {<UsersName/>}/>
+      <Route path='*' element = {<Error/>}/>
     </Routes>
     </BrowserRouter>
   )

@@ -5,7 +5,7 @@ export const UsersName = () => {
     const {username} = useParams()
   return (
     <div>
-        <h1>User:{username}</h1>
+        <h1>User: {username}</h1>
     </div>
   )
 }
