@@ -2,6 +2,11 @@ import React from 'react'
 
 export const User = () => {
   return (
-    <div>User</div>
+    <div>
+<h1> User</h1>
+        
+       
+        
+    </div>
   )
 }
