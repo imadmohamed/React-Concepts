@@ -15,8 +15,8 @@ const NaveBar = () => {
         <ul>
             <Link to = "/">Home</Link>
             <Link to = "/about">About</Link>
-            {/* <Link to = "/user">User</Link> */}
-            <li onClick={handleChange}>user</li>
+            <Link to = "/user">User</Link>
+            {/* <li onClick={handleChange}>user</li> */}
             <Link to = "/contact">Contact</Link>
             <Link to = "/username">User Name</Link>
         </ul>
