@@ -5,9 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 const NaveBar = () => {
   const navigate = useNavigate()
 
-  const handleChange = () => {
-    navigate("/user");
-  }
 
   return (
     <nav>
