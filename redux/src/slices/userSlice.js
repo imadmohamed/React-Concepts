@@ -13,7 +13,7 @@ export const userSlice = createSlice({
         },
         deleteUser:(state, action) => {
             state.users = state.users.filter(
-            (users, index) => index !== action.payload
+            (user, index) => index !== action.payload
             );
         }
     },
