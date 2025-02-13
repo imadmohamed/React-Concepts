@@ -1,34 +1,152 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState } from 'react'
 import './App.css'
+import { v4 as uuid } from 'uuid';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+
+  const [users, setUsers] = useState([]);
+  const [buttonState, setButtonState] = useState("add");
+  const [userInfo, setUserInfo] = useState({
+    id: uuid(),
+    name:"",
+    age:"",
+    email:"",
+    phone_Number:""
+  })
+
+  const handleChange = (e) => {
+      const {name, value} = e.target;
+      setUserInfo((currInfo) => {
+        return{
+          ...currInfo,
+          [name]: value
+        };
+     });
+  };
+
+  const addData = () => {
+    setUsers((currUsers) => [...currUsers, userInfo]);
+    setUserInfo({
+      id: uuid(),
+      name:"",
+      age:"",
+      email:"",
+      phone:""
+    });
+  }
+
+  const deleteData = (id) => {
+    setUsers((currUsers) =>{
+      return currUsers.filter((user) => {
+        return user.id !== id;
+      })
+    })
+  }
+
+  const startEditing = (user) => {
+    setUserInfo(user);
+    setButtonState("Edit");
+  }
+
+  const cancelEditing = () => {
+    setUserInfo({
+      id: uuid(),
+      name:"",
+      age:"",
+      email:"",
+      phone:""
+    });
+    setButtonState("add");
+  }
+
+  const updateData = () => {
+    setUsers((currUsers) => {
+      return currUsers.map((user) => {
+        if (user.id === userInfo.id){
+          return userInfo;
+        }
+        return user;
+      })
+    })
+    cancelEditing();
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='container'>
+      <div className='form'>
+        <input 
+        type="text" 
+        placeholder="Enter Name"
+        value={userInfo.name} 
+        name='name'
+        onChange={handleChange}
+        />
+        <br />
+
+        <input 
+        type="number" 
+        placeholder="Enter Age" 
+        value={userInfo.age}
+        name='age'
+        onChange={handleChange}/>
+        <br />
+
+        <input 
+        type="email" 
+        placeholder="Enter Email" 
+        value={userInfo.email}
+        name='email' 
+        onChange={handleChange}/>
+        <br />
+
+        <input 
+        type="number" 
+        placeholder="Enter Phone Number" 
+        value={userInfo.phone}
+        name='phone'
+        onChange={handleChange}/>
+        <br />
+      {
+        buttonState === "add" ? (<button onClick={addData}>Add</button>):
+        (
+          <div className='buttonContainer'>
+            <button onClick={updateData}>Update</button>
+            <button onClick={cancelEditing}>Cancel</button>
+          </div>
+      )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='dataTable'>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, index) => {
+              return(
+                <tr key={index}>
+                  <td>{user.name}</td>
+                  <td>{user.age}</td>
+                  <td>{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td>
+                    <button onClick={()=> startEditing(user)}>Edit</button>
+                    <button onClick={()=> deleteData(user.id)}>Delete</button>
+                  </td>
+                </tr>
+              )
+            })}
+            <tr></tr>
+          </tbody>
+        </table>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
